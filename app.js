@@ -9,8 +9,6 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-mongoose.set('strictQuery', false);
-
 // routes 
 const toursRoute = require('./routes/v1/tours.route')
 
