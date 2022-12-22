@@ -1,4 +1,25 @@
-const { addATourService, getAllToursServices, getAllToursService } = require("../services/tour.services");
+const { addATourService, getAllToursService, getATourService } = require("../services/tour.services");
+
+// Adding A tour Controller 
+exports.addATour = async (req, res, next) => {
+    try {
+        const result = await addATourService(req.body);
+        if (result._id) {
+            res.status(200).json({
+                status: 'success',
+                message: 'Tour Inserted Successfully',
+                data: result,
+            });
+        }
+
+    } catch (error) {
+        res.status(400).json({
+            status: "Failed",
+            message: "Data is not inserted",
+            error: error.message,
+        });
+    }
+};
 
 // Getting All tours Controller 
 exports.getAllTours = async (req, res, next) => {
@@ -55,14 +76,15 @@ exports.getAllTours = async (req, res, next) => {
     }
 };
 
-// Adding A tour Controller 
-exports.addATour = async (req, res, next) => {
+// Getting A tour Controller 
+exports.getATour = async (req, res, next) => {
     try {
-        const result = await addATourService(req.body);
+        const tourId = req.params.id;
+        const result = await getATourService(tourId);
         if (result._id) {
             res.status(200).json({
                 status: 'success',
-                message: 'Tour Inserted Successfully',
+                message: 'Tour found Successfully',
                 data: result,
             });
         }
@@ -70,7 +92,7 @@ exports.addATour = async (req, res, next) => {
     } catch (error) {
         res.status(400).json({
             status: "Failed",
-            message: "Data is not inserted",
+            message: "Data not found",
             error: error.message,
         });
     }
