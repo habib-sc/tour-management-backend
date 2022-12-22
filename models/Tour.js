@@ -48,11 +48,6 @@ const tourSchema = mongoose.Schema({
             phone: String
         }
     ],
-    createdAt: {
-        type: Date,
-        default: Date.now,
-    }
-
 
 }, { timestamps: true });
 
