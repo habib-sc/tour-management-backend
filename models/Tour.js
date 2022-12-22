@@ -48,6 +48,7 @@ const tourSchema = mongoose.Schema({
             phone: String
         }
     ],
+    views: Number
 
 }, { timestamps: true });
 
