@@ -32,3 +32,13 @@ exports.updateATourService = async (tourId, data) => {
     const result = await tour.set(data).save();
     return result;
 };
+
+// get top 3 viewed tours Service 
+exports.getTrendingToursService = async () => {
+    const limit = 3
+    const result = await Tour.find()
+        .sort({ views: -1 })
+        .limit(limit);
+
+    return result;
+};

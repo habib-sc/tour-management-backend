@@ -7,6 +7,9 @@ router.route('/')
     .get(toursController.getAllTours)
     .post(toursController.addATour)
 
+router.route('/trending')
+    .get(toursController.getTrendingTours)
+
 router.route('/:id')
     .get(tourViewCount, toursController.getATour)
     .patch(toursController.updateATour)
