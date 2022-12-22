@@ -1,11 +1,13 @@
 const Tour = require("../models/Tour");
 
+// Add A Tour Service 
 exports.addATourService = async (data) => {
     const result = await Tour.create(data);
     return result;
 };
 
-exports.getAllToursServices = async (filters, queries) => {
+// Get All Tour service 
+exports.getAllToursService = async (filters, queries) => {
     const tours = await Tour.find(filters)
         .skip(queries.skip)
         .limit(queries.limit)

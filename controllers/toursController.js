@@ -1,4 +1,4 @@
-const { addATourService, getAllToursServices } = require("../services/tour.services");
+const { addATourService, getAllToursServices, getAllToursService } = require("../services/tour.services");
 
 // Getting All tours Controller 
 exports.getAllTours = async (req, res, next) => {
@@ -38,7 +38,7 @@ exports.getAllTours = async (req, res, next) => {
             queries.sortBy = sortBy;
         };
 
-        const tours = await getAllToursServices(filters, queries);
+        const tours = await getAllToursService(filters, queries);
         res.status(200).json({
             status: 'success',
             message: 'Tours Found',
