@@ -12,13 +12,12 @@ app.use(cors());
 mongoose.set('strictQuery', false);
 
 // routes 
-const sampleRoute = require('./routes/sample.route');
-
+const toursRoute = require('./routes/v1/toors.route')
 
 app.get("/", (req, res) => {
     res.send("Home Route");
 });
 
-app.use('/api/v1/sample', sampleRoute);
+app.use('/api/v1/tours', toursRoute);
 
 module.exports = app;

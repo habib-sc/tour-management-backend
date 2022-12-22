@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const sampleControler = require('../controllers/sample.controller');
+const toursController = require('../../controllers/toursController');
 
 router.route('/')
-    .get(sampleControler.getItemSample)
+    .post(toursController.addATour)
 
 module.exports = router;
