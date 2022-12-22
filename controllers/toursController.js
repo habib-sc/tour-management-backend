@@ -1,4 +1,4 @@
-const { addATourService, getAllToursService, getATourService } = require("../services/tour.services");
+const { addATourService, getAllToursService, getATourService, updateATourService } = require("../services/tour.services");
 
 // Adding A tour Controller 
 exports.addATour = async (req, res, next) => {
@@ -93,6 +93,35 @@ exports.getATour = async (req, res, next) => {
         res.status(400).json({
             status: "Failed",
             message: "Data not found",
+            error: error.message,
+        });
+    }
+};
+
+// Update A tour Controller 
+exports.updateATour = async (req, res, next) => {
+    try {
+        const tourId = req.params.id;
+
+        const isEmptyBody = Object.keys(req.body).length === 0;
+        if (isEmptyBody) {
+            res.send({ message: "Blank data not acceptable" });
+            return;
+        };
+
+        const result = await updateATourService(tourId, req.body);
+        if (result._id) {
+            res.status(200).json({
+                status: 'success',
+                message: 'Tour update Successfully',
+                data: result,
+            });
+        }
+
+    } catch (error) {
+        res.status(400).json({
+            status: "Failed",
+            message: "Couldn't update the tour",
             error: error.message,
         });
     }

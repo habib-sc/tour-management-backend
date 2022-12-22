@@ -8,5 +8,6 @@ router.route('/')
 
 router.route('/:id')
     .get(toursController.getATour)
+    .patch(toursController.updateATour)
 
 module.exports = router;

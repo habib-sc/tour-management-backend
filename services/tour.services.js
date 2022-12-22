@@ -25,3 +25,10 @@ exports.getATourService = async (tourId) => {
     const result = await Tour.findById(tourId);
     return result;
 };
+
+// Update A Tour Service 
+exports.updateATourService = async (tourId, data) => {
+    const tour = await Tour.findById(tourId);
+    const result = await tour.set(data).save();
+    return result;
+};
