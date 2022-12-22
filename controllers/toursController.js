@@ -1,4 +1,4 @@
-const { addATourService, getAllToursService, getATourService, updateATourService, getTrendingToursService } = require("../services/tour.services");
+const { addATourService, getAllToursService, getATourService, updateATourService, getTrendingToursService, getCheapestToursService } = require("../services/tour.services");
 
 // Adding A tour Controller 
 exports.addATour = async (req, res, next) => {
@@ -135,6 +135,28 @@ exports.getTrendingTours = async (req, res, next) => {
             res.status(200).json({
                 status: 'success',
                 message: 'Top 3 tour found successfully by views',
+                data: result,
+            });
+        }
+
+    } catch (error) {
+        res.status(400).json({
+            status: "Failed",
+            message: "Data not found",
+            error: error.message,
+        });
+    }
+};
+
+
+// Get Top 3 cheapest tours 
+exports.getCheapestTours = async (req, res, next) => {
+    try {
+        const result = await getCheapestToursService();
+        if (result) {
+            res.status(200).json({
+                status: 'success',
+                message: 'Top 3 Cheapest tour found successfully',
                 data: result,
             });
         }
